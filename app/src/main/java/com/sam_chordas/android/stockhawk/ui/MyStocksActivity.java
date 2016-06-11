@@ -1,13 +1,16 @@
 package com.sam_chordas.android.stockhawk.ui;
 
 import android.app.LoaderManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
@@ -156,10 +159,27 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
   }
 
 
+  BroadcastReceiver reciever = new BroadcastReceiver(){
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      Toast.makeText(context, "Oops! This is an invalid stock symbol", Toast.LENGTH_SHORT).show();
+    }
+  };
+
+  IntentFilter filter = new IntentFilter("INVALID_SYMBOL");
+
   @Override
   public void onResume() {
     super.onResume();
     getLoaderManager().restartLoader(CURSOR_LOADER_ID, null, this);
+    LocalBroadcastManager.getInstance(this).registerReceiver(reciever, filter);
+  }
+
+  @Override
+  protected void onPause() {
+    LocalBroadcastManager.getInstance(this).unregisterReceiver(reciever);
+    super.onPause();
   }
 
   public void networkToast(){

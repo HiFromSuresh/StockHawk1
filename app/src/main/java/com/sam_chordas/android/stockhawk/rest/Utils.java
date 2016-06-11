@@ -1,13 +1,19 @@
 package com.sam_chordas.android.stockhawk.rest;
 
 import android.content.ContentProviderOperation;
+import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
-import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by sam_chordas on 10/8/15.
@@ -18,7 +24,7 @@ public class Utils {
 
   public static boolean showPercent = true;
 
-  public static ArrayList quoteJsonToContentVals(String JSON){
+  public static ArrayList quoteJsonToContentVals(String JSON, Context context){
     ArrayList<ContentProviderOperation> batchOperations = new ArrayList<>();
     JSONObject jsonObject = null;
     JSONArray resultsArray = null;
@@ -30,7 +36,12 @@ public class Utils {
         if (count == 1){
           jsonObject = jsonObject.getJSONObject("results")
               .getJSONObject("quote");
-          batchOperations.add(buildBatchOperation(jsonObject));
+          if(jsonObject.isNull("BookValue") || jsonObject.equals("")){
+            sendMessage("error", context);
+            return batchOperations;
+          }else{
+            batchOperations.add(buildBatchOperation(jsonObject));
+          }
         } else{
           resultsArray = jsonObject.getJSONObject("results").getJSONArray("quote");
 
@@ -46,6 +57,11 @@ public class Utils {
       Log.e(LOG_TAG, "String to JSON failed: " + e);
     }
     return batchOperations;
+  }
+
+  public static void sendMessage(String error, Context context){
+    Intent intent = new Intent("INVALID_SYMBOL");
+    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
   }
 
   public static String truncateBidPrice(String bidPrice){
