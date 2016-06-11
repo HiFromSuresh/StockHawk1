@@ -38,7 +38,7 @@ import com.sam_chordas.android.stockhawk.touch_helper.SimpleItemTouchHelperCallb
 public class MyStocksActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
   /**
-   * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
+   * Fragment managing the behaviors, interactions and presentation of the navigation  drawer.
    */
 
   /**
