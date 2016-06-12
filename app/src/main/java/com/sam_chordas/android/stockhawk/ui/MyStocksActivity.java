@@ -55,6 +55,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
   private Context mContext;
   private Cursor mCursor;
   boolean isConnected;
+  private static final String KEY = "key";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +91,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 //TODO:
                 Intent detailsIntent = new Intent(mContext, DetailsActivity.class);
                 mCursor.moveToPosition(position);
-                detailsIntent.putExtra(getResources().getString(R.string.string_symbol),
+                detailsIntent.putExtra(KEY,
                         mCursor.getString(mCursor.getColumnIndex(getResources().getString(R.string.string_symbol))));
                 mContext.startActivity(detailsIntent);
               }
