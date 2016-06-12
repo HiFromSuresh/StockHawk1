@@ -13,4 +13,6 @@
   <string name="cont_desc_fab_button">Add a new stock</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+  <string name="string_set_background_resource">setBackgroundResource</string>
+  <string name="string_symbol">symbol</string>
 </resources>
