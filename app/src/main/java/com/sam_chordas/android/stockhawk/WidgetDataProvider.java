@@ -96,6 +96,9 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
             views.setTextViewText(R.id.change, data.getString(data.getColumnIndex(QuoteColumns.CHANGE)));
         }
 
+        final Intent fillInIntent = new Intent();
+        fillInIntent.putExtra(context.getResources().getString(R.string.string_symbol), data.getString(data.getColumnIndex(QuoteColumns.SYMBOL)));
+        views.setOnClickFillInIntent(R.id.widget_list_item, fillInIntent);
         return views;
     }
 
