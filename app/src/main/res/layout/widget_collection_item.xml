@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/touch_selector_dark"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:padding="@dimen/widget_margin">
+    android:padding="@dimen/pad_medium">
 
 
     <TextView
@@ -14,7 +14,7 @@
         style="@style/StockSymbolTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
+        android:layout_margin="@dimen/pad_small"
         android:gravity="start|center_vertical"
         tools:text="GOOG"
         />
@@ -25,10 +25,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_margin="3dp"
+        android:layout_margin="@dimen/pad_small"
         android:background="@drawable/percent_change_pill"
-        android:paddingStart="3dp"
-        android:paddingEnd="3dp"
+        android:paddingStart="@dimen/pad_small"
+        android:paddingEnd="@dimen/pad_small"
         tools:text="100%"
         />
 

@@ -2,14 +2,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="@dimen/widget_margin">
+    android:layout_margin="@dimen/pad_medium">
 
     <ListView
         android:id="@+id/widget_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
-        android:dividerHeight="0dp"
+        android:dividerHeight="@dimen/dimen_zero"
         tools:listitem="@layout/widget_collection_item"/>
 
 </FrameLayout>

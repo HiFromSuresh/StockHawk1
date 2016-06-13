@@ -5,10 +5,10 @@
     android:layout_height="72dp"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
+    android:paddingLeft="@dimen/pad_large"
+    android:paddingRight="@dimen/pad_large"
+    android:paddingStart="@dimen/pad_large"
+    android:paddingEnd="@dimen/pad_large"
     android:layoutDirection="locale">
 
   <TextView
@@ -20,7 +20,7 @@
       tools:text="GOOG"
       />
   <LinearLayout
-      android:layout_width="0dp"
+      android:layout_width="@dimen/dimen_zero"
       android:layout_height="wrap_content"
       android:layout_weight="1"
       android:gravity="end"
@@ -30,8 +30,8 @@
         style="@style/BidPriceTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingRight="10sp"
-        android:paddingEnd="10sp"
+        android:paddingRight="@dimen/pad_medium"
+        android:paddingEnd="@dimen/pad_medium"
         tools:text="1000.00"
         />
     <TextView
@@ -40,10 +40,10 @@
         style="@style/PercentChangeTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:paddingStart="3dp"
-        android:paddingEnd="3dp"
+        android:paddingLeft="@dimen/pad_small"
+        android:paddingRight="@dimen/pad_small"
+        android:paddingStart="@dimen/pad_small"
+        android:paddingEnd="@dimen/pad_small"
         tools:text="100%"
         />
   </LinearLayout>
