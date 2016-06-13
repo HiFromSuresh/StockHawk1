@@ -116,7 +116,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                       new String[] { input.toString() }, null);
                   if (c.getCount() != 0) {
                     Toast toast =
-                        Toast.makeText(MyStocksActivity.this, "This stock is already saved!",
+                        Toast.makeText(MyStocksActivity.this, R.string.string_already_saved,
                             Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
                     toast.show();
@@ -168,7 +168,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
     @Override
     public void onReceive(Context context, Intent intent) {
-      Toast.makeText(context, "Oops! This is an invalid stock symbol", Toast.LENGTH_SHORT).show();
+      Toast.makeText(context, R.string.string_invalid_symbol, Toast.LENGTH_SHORT).show();
     }
   };
 

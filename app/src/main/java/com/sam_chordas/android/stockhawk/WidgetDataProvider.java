@@ -62,7 +62,6 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
 
     @Override
     public void onDestroy() {
-        //todo
     }
 
     @Override
@@ -114,7 +113,6 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
 
     @Override
     public long getItemId(int position) {
-        //TODO probable error
         return position;
     }
 
