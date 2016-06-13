@@ -12,13 +12,14 @@ import android.os.Bundle;
 
 import com.db.chart.model.LineSet;
 import com.db.chart.model.Point;
+import com.db.chart.view.AxisController;
 import com.db.chart.view.ChartView;
 import com.db.chart.view.LineChartView;
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
 
-public class DetailsActivity extends Activity implements LoaderManager.LoaderCallbacks<Cursor>{
+public class DetailsActivity extends Activity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String KEY = "key";
     public static final int LOADER_ID = 1;
@@ -43,7 +44,7 @@ public class DetailsActivity extends Activity implements LoaderManager.LoaderCal
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getApplicationContext(), QuoteProvider.Quotes.CONTENT_URI,
-                new String[]{QuoteColumns.SYMBOL, QuoteColumns.BIDPRICE, QuoteColumns.PERCENT_CHANGE, QuoteColumns.CREATED},
+                new String[]{QuoteColumns.SYMBOL, QuoteColumns.BIDPRICE},
                 QuoteColumns.SYMBOL + " =?", new String[]{symbol}, QuoteColumns._ID + " ASC");
     }
 
@@ -52,25 +53,21 @@ public class DetailsActivity extends Activity implements LoaderManager.LoaderCal
         dataset = new LineSet();
 
         int i = 0;
-        if(data.moveToFirst()){
+        if (data.moveToFirst()) {
             String bidprice = data.getString(1);
-            double firstBidPrice = Double.parseDouble(bidprice);
+            float firstBidPrice = Float.parseFloat(bidprice);
             minValue = firstBidPrice;
             maxValue = firstBidPrice;
-            dataset.addPoint(new Point(String.valueOf(i), Float.parseFloat(bidprice)));
+            dataset.addPoint(new Point(String.valueOf(i), firstBidPrice));
             i++;
 
-            while(data.moveToNext()){
+            while (data.moveToNext()) {
                 bidprice = data.getString(1);
-                double doubleBidprice = Double.parseDouble(bidprice);
-                dataset.addPoint(new Point(String.valueOf(i), Float.parseFloat(bidprice)));
+                float floatBidprice = Float.parseFloat(bidprice);
+                dataset.addPoint(new Point(String.valueOf(i), floatBidprice));
 
-                if (minValue > doubleBidprice) {
-                    minValue = doubleBidprice;
-                }
-                if (maxValue < doubleBidprice) {
-                    maxValue = doubleBidprice;
-                }
+                if (minValue > floatBidprice) minValue = floatBidprice;
+                if (maxValue < floatBidprice) maxValue = floatBidprice;
                 i++;
             }
             dataset.setDotsColor(getResources().getColor(R.color.material_green_700));
@@ -82,6 +79,8 @@ public class DetailsActivity extends Activity implements LoaderManager.LoaderCal
             lineChartView.setAxisColor(Color.WHITE);
             lineChartView.setLabelsColor(Color.WHITE);
             lineChartView.setXAxis(false);
+            lineChartView.setYAxis(false);
+            lineChartView.setXLabels(AxisController.LabelPosition.NONE);
             lineChartView.setStep(1);
             Paint paint = new Paint();
             paint.setColor(Color.WHITE);

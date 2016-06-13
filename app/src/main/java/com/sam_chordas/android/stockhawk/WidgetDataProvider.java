@@ -46,7 +46,7 @@ public class WidgetDataProvider implements RemoteViewsService.RemoteViewsFactory
         // This is the same query from MyStocksActivity
         data = context.getContentResolver().query(
                 QuoteProvider.Quotes.CONTENT_URI,
-                new String[] {
+                new String[]{
                         QuoteColumns._ID,
                         QuoteColumns.SYMBOL,
                         QuoteColumns.BIDPRICE,
